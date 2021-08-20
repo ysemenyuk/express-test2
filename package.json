@@ -1,0 +1,34 @@
+{
+  "name": "y",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "DEBUG=request*,server* nodemon index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ysemenyuk/express-test1.git"
+  },
+  "author": "y.semenyuk",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ysemenyuk/express-test1/issues"
+  },
+  "homepage": "https://github.com/ysemenyuk/express-test1#readme",
+  "type": "module",
+  "dependencies": {
+    "debug": "^4.3.2",
+    "express": "^4.17.1",
+    "knex": "^0.95.9",
+    "objection": "^2.2.15",
+    "pg": "^8.6.0",
+    "pg-hstore": "^2.3.4",
+    "sqlite3": "^5.0.2",
+    "uuid": "^8.3.2"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.12"
+  }
+}
