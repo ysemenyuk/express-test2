@@ -4,8 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "test": "node --experimental-vm-modules node_modules/.bin/jest",
     "start": "node index.js",
-    "dev": "DEBUG=request*,server* nodemon index.js"
+    "dev": "DEBUG=request*,server* nodemon bin/server.js"
   },
   "repository": {
     "type": "git",
@@ -29,6 +30,9 @@
     "uuid": "^8.3.2"
   },
   "devDependencies": {
-    "nodemon": "^2.0.12"
+    "jest": "^27.0.6",
+    "nodemon": "^2.0.12",
+    "superagent": "^6.1.0",
+    "supertest": "^6.1.6"
   }
 }

@@ -3,7 +3,12 @@ export default {
     client: 'sqlite3',
     connection: ':memory:',
     useNullAsDefault: true,
-    // migrations,
+    migrations: {
+      directory: './migrations',
+    },
+    seeds: {
+      directory: './seeds',
+    },
   },
   development: {
     client: 'pg',
