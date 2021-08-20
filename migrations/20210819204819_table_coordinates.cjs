@@ -3,7 +3,7 @@ exports.up = (knex) =>
     table.increments('id').primary();
     table.float('latitude').notNullable();
     table.float('longitude').notNullable();
-    table.integer('user_id').notNullable().references('users.id');
+    table.integer('userId').notNullable().references('users.id');
     table.timestamp('time');
   });
 

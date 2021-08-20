@@ -16,20 +16,40 @@ describe('requests', () => {
 
   it('GET 200', async () => {
     const response = await request(app).get('/');
-    console.log(response.statusCode);
-
     expect(response.statusCode).toBe(200);
   });
 
-  it('GET users', async () => {
-    const response = await request(app).get('/users');
-    console.log(response.statusCode);
-    console.log(response.body);
+  it('GET coordinates', async () => {
+    const response = await request(app).get('/users/1/coordinates');
+    // console.log(response.body);
 
     expect(response.statusCode).toBe(200);
+    expect(response.body.length).toBe(4);
   });
 
-  afterAll(async (done) => {
+  it('POST coordinate', async () => {
+    const data = {
+      userId: '1',
+      time: '2022-01-01T16:00:00Z',
+      location: {
+        latitude: '45.51633',
+        longitude: '12.63622',
+      },
+    };
+
+    const response = await request(app).post('/users/1/coordinates').send(data);
+    expect(response.statusCode).toBe(200);
+
+    const { userId, time, location } = data;
+
+    const point = await knex('coordinates')
+      .where({ ...location, userId, time })
+      .first();
+    expect(point).not.toBeUndefined();
+  });
+
+  afterAll((done) => {
+    knex.destroy();
     done();
   });
 });
