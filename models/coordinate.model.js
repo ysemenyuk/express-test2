@@ -1,8 +1,5 @@
-import pkg from 'objection';
-const { Model } = pkg;
-// import path from 'path';
-
-// import knex from '../dbConfig.js';
+import objection from 'objection';
+const { Model } = objection;
 
 import User from './user.model.js';
 
@@ -27,7 +24,6 @@ export default class Coordinate extends Model {
     return {
       users: {
         relation: Model.ManyToManyRelation,
-        // modelClass: path.join(path.resolve(), 'models', 'student.model.js'),
         modelClass: User,
         join: {
           from: 'coordinates.id',

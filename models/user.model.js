@@ -1,6 +1,6 @@
-import pkg from 'objection';
-const { Model } = pkg;
-// import path from 'path';
+import objection from 'objection';
+const { Model } = objection;
+
 import Coordinate from './coordinate.model.js';
 
 export default class User extends Model {
@@ -23,7 +23,6 @@ export default class User extends Model {
     return {
       coordinates: {
         relation: Model.ManyToManyRelation,
-        // modelClass: path.join(path.resolve(), 'models', 'lesson.model.js'),
         modelClass: Coordinate,
         join: {
           from: 'users.id',
