@@ -7,6 +7,15 @@ import { errorHandler } from './middlewares/errorHandler.middleware.js';
 import usersRouter from './routes/users.router.js';
 import coordinatesRouter from './routes/coordinates.router.js';
 
+import Knex from 'knex';
+import knexConfig from './knexfile.js';
+
+import objection from 'objection';
+const { Model } = objection;
+
+const knex = Knex(knexConfig.development);
+Model.knex(knex);
+
 const app = express();
 const logger = debug('server');
 

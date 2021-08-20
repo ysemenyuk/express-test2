@@ -2,9 +2,9 @@ const asyncErrorHandler = (handler) => (req, res, next) => handler(req, res, nex
 
 const errorHandler = (err, req, res, next) => {
   res.status(500).send({ message: err.message });
-
+  console.log(err);
   req.logger(`ERR: ${err.message}`);
-  req.logger(`ERR: ${req.method}- ${req.originalUrl} -${res.statusCode}`);
+  // req.logger(`ERR: ${req.method}- ${req.originalUrl} -${res.statusCode}`);
   return;
 };
 
