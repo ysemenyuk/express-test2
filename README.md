@@ -6,8 +6,11 @@ simple api server
 
 1. `make install` - установит зависимости
 2. `make db-start` - запустит PostgreSQL в Docker контейнере
-3. `make migrate-latest` - создат необходимые таблицы в базе данных
-4. `make seed` - тестовые данные для базы данных
+3. `make db-stop` - остановка Docker контейнера
+4. `make migrate-latest` - создаcт необходимые таблицы в базе данных
+5. `make seed` - тестовые данные для базы данных
+6. `make dev` - запуск приложения PORT 4000
+7. `make test` - запуск тестов
 
 
 #### api
@@ -17,10 +20,21 @@ simple api server
 Входные данные json объект 
 
 ```json
-{ "name": "Миша" }
+{ 
+  "name": "Миша" 
+ }
 ```
 
 `GET /users` - получение всех пользователей
+
+```json
+[
+  { 
+    "id": 1,
+    "name": "Миша" 
+  }
+]
+```
 
 `POST /users/userId/coordinates` - создание точки для пользователя
 
