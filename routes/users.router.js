@@ -1,7 +1,8 @@
 import express from 'express';
 
-import knex from '../initKnex.js';
+import { makeResMessage } from '../utils/makeMessage.js';
 import { asyncErrorHandler } from '../middlewares/errorHandler.middleware.js';
+import usersRepository from '../repositories/users.repository.js';
 
 const router = express.Router();
 
@@ -11,11 +12,10 @@ router.post(
     req.logger('users.router POST /users');
 
     const { name } = req.body;
-    const [id] = await knex('users').returning('id').insert({ name });
-    const user = await knex('users').where({ id }).first();
-    res.status(200).send(user);
+    const user = await usersRepository.createOne({ name });
 
-    req.logger(`RES: ${req.method}- ${req.originalUrl} -${res.statusCode}`);
+    res.status(200).send(user);
+    req.logger(makeResMessage(req));
   })
 );
 
@@ -24,10 +24,10 @@ router.get(
   asyncErrorHandler(async (req, res) => {
     req.logger('users.router GET /users');
 
-    const users = await knex.select().table('users');
-    res.status(200).send(users);
+    const users = await usersRepository.findAll();
 
-    req.logger(`RES: ${req.method}- ${req.originalUrl} -${res.statusCode}`);
+    res.status(200).send(users);
+    req.logger(makeResMessage(req));
   })
 );
 
